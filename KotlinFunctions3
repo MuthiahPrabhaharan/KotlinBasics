@@ -1,0 +1,26 @@
+//Here, if we don't pass any arguments to main() function then we will get null coz of getOrNull() method...
+fun main(args:Array<String>){
+    //In, below code we will get a null coz of getOrNull() function...
+   println("Hello,${args.getOrNull(0)}!")
+    //We, can also assign a null inside a String Template but curly braces are must be used...
+    println("Hi,${null}!")
+    var name = "Muthuprabha"
+    //Below, code is called as a String template in Kotlin...
+    //Instead, of using a String Concatenation in Kotlin like Java we tend to use this String Templates...
+    println("My nickname is $name!")
+    println()
+    //In, below code we call a callMe() function by using String Templates...
+    //So, to call a method inside a String templates we must use curly braces{} ok...
+    //Below, callMe() function is executed twice first then only statement inside a println() function is printed...
+    println("Hello,${callMe()}, Hi,${callMe()}")
+    /*
+    So, O/P for above code is,
+        Someone is calling me!
+        Someone is calling me!
+        "Hello,Who you are?, Hi,Who you are?"
+     */
+}
+fun callMe() : String{
+    println("Someone is calling me!")
+    return "Who you are?"
+}
