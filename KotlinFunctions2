@@ -1,0 +1,46 @@
+import Phone.*
+//Below, main() function is declared it's a top-level function in Kotlin...
+//In, Kotlin we can define functions(methods) as a top-level function like Class in Java...
+//We, can also declare functions as a Class member(inside a class) it's possible in Kotlin...
+//And, also we can define a function inside function(i.e., a method inside a method) it's also fine...
+fun main(){ // main() = top-level function!
+    println("It's main() a top-level function!")
+    println()
+    //Below code, calls a Class member function named aboutPhone() ok...
+    //Here, aboutPhone() function is declared inside a Phone Class ok.we call that from our main()...
+    Phone().aboutPhone()
+    println()
+    //Here, we call a switch() function from main() function...
+    //switch() function gets executed and both on() & off() functions are gets invoked...
+    //coz, switch() function has two local functions named on() & off() inside in it...
+    switch()
+}
+class Phone{
+    var phoneType:String = "LandLine"
+    var numberOfButtons:Int = 15
+    fun aboutPhone(){ // aboutPhone() = Class member function!
+        println("The Phone type is $phoneType, the number of Buttons presented here is $numberOfButtons!")
+    }
+}
+fun switch() {
+    fun on(){ // on() = local function!
+        println("Switch have ON type click!")
+    }
+    fun off(){ // off() = local function!
+        println("Switch have also OFF type click!")
+    }
+    /*
+    println("Call on() local function! -> ${on()}")
+    println("Call off() local function! -> ${off()}")
+   */
+    //calling the both on() & off() local functions inside the same switch function...
+    //If we switch from main() function it will get executed and it will invoke below these two functions...
+    on()
+    off()
+    /*
+    So, function(methods) can be declared in the following manner...
+    1) It can be Top-Level Function.
+    2) It can be Class Member Function.
+    3) It can be Local Function as well.
+     */
+}
