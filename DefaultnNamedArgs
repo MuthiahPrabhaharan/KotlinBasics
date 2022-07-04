@@ -1,0 +1,68 @@
+package cond
+//In, kotlin if & when are conditional statements(expressions) like Java...
+//Here, in kotlin when statement = switch statement in Java both are used to check multiple conditions...
+//In, kotlin Ternary Operator is not allowed ok instead of that we can use if statement as an expression as shown below...
+//We, can also omit the return type if the function(method) doesn't return any value or something...
+//But, we can't omit the return type if the function(method) returns any value or something or even an expression...
+//Here, in Kotlin there is no break statement is needed like Java...
+//If, we use when statement then there is no need to use the break statement explicitly coz without break it runs perfectly...
+//When, the run condition is satisfied means then it will return that particular value from that when body block...
+//Below, code is used to import an Enum Class into the function(method) named getSignalCommand() ok...
+import cond.Signal.*
+enum class Signal{
+    RED,YELLOW,GREEN
+}
+//Here, the below function is in Syntactic form coz the return type is explicitly specified...
+fun getSignalCommand(signal: Signal) : String =
+    when(signal){
+        RED -> "Stop!"
+        YELLOW -> "Get Ready!"
+        GREEN -> "Go!"
+    }
+/*
+//Below, code is known as Syntactic form in Kotlin coz we explicitly declared the return type of this function(method) as Unit...
+fun min(a:Int,b:Int):Unit {
+    //If is an expression in Kotlin & it can return values we can also simply assign that returning value to any variable as shown below...
+    val minNo = if (a < b) a else b
+    println(minNo)
+}
+ */
+fun min(a:Int,b:Int){
+    //If is an expression in Kotlin & it can return values we can also simply assign that returning value to any variable as shown below...
+    val minNo = if (a < b) a else b
+    println(minNo)
+}
+/*
+//Here, the below function is in Non-Syntactic form coz the return type is not explicitly specified...
+fun getSignalCommand(signal: Signal) =
+    when(signal){
+        RED -> "Stop!"
+        YELLOW -> "Get Ready!"
+        GREEN -> "Go!"
+    }
+ */
+fun main(){
+    println("Hi!")
+    min(12,24)
+    min(45,30)
+    println(getSignalCommand(RED))
+    println(getSignalCommand(YELLOW))
+    println(getSignalCommand(GREEN))
+    val int = "AB"
+    var string = 17
+    println("$int -> $string")
+    println()
+    println(getInput("Y"))
+    println(getInput("False"))
+    println(getInput("LESS!"))
+}
+//In, kotlin to check multiple branches(conditions) then 'when' must be used like how 'switch' can be used in Java...
+//To, check not more than one branch(single condition) then 'if' should be highly recommended one...
+fun getInput(input:String) =
+    when(input){
+        "Y","Yes","True" -> "OfCourse, I'm agreed!"
+        "N","No","False" -> "Damn!, I'm not to agree!"
+        else -> "What?, I can't understand!"
+    }
+//In, above code we used to check multiple branches(conditions) with the help of 'when' in that we used more than one(multiple) conditional check values which is on left...
+//So, it is very much possible to give several conditions checking values like im just used 3 values known as "Y","Yes","True" like that in Kotlin...
