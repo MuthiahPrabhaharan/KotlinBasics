@@ -1,0 +1,112 @@
+//Here, we are going to see loops in Kotlin...
+//In, Kotlin the loops are same like in Java...
+//It contains for,while & do-while loops in it with several modifications in syntax compared to Java...
+//In, Kotlin semicolon is optional but in Java semicolon is mandatory...
+fun main(){
+  //Here, below we used for loop to iterate a list of elements...
+   val list = listOf('a','b','c','d','e')
+    //In, for loop 'in' keyword is used to iterate through the entire elements that present inside for loop...
+    for (l in list){
+       print("$l ")
+    }
+    println()
+    //Below, we used to iterate the set of elements inside the for loop...
+    var set = setOf("zyx","wvu","tsr","qpo","nml")
+    for (s:String in set){
+        print("$s-")
+    }
+    println()
+    //In, kotlin we can also iterate through the map(key,values) by using for loop...
+    val map = mapOf(
+        1 to "One",
+        2 to "Two",
+        3 to "Three",
+        4 to "Four",
+        5 to "Five"
+        )
+    for ((key,value) in map){
+        print("$key -> $value ")
+    }
+    println()
+    for(m in map){
+        println(m)
+    }
+    println()
+    //Below, while loop in Kotlin...
+    var a = 1
+    while (a < 11){
+        print("$a ")
+        a++
+    }
+    println()
+    var b = 10
+    while (b > 0){
+        print("$b ")
+        b--
+    }
+    println()
+    //Below, do while loop in Kotlin...
+    var c = 20
+    do {
+        print("$c ")
+        c--
+    }while (c > 0)
+    println()
+    var d = 1
+    do{
+        print("$d ")
+        d++
+    }while (d < 21)
+    println()
+    //Here, iterate through the list of elements by using withIndex() built-in function in for loop...
+    val lst = listOf("m","u","t","h","u")
+    for ((index,element) in lst.withIndex()){
+        println("$index:$element")
+    }
+    println()
+    val st:Set<Char> = setOf('p','r','a','b','h','a','h','a','r')
+    /*
+    for ((index,element) in st.withIndex()){
+        print("$element")
+    }
+    */
+    for (s in st){
+        print("$s")
+    }
+    println()
+    //We, can also define the range of values in for loop by using ".." double dots...
+    for(i in 1..10){
+        //Here, in Kotlin String Templates is used instead of String Concatenation as shown below...
+        print("$i ")
+    }
+    println()
+    //Until, it is also a range that defined in for loop to iterate until given condition...
+    for (i in 1 until 10){
+        print("$i ")
+    }
+    println()
+    /*
+    //Below, code throws an error...
+    for (b in '0' to '9'){
+        print("$b")
+    }
+    println()
+     */
+    //We, can also iterate as shown below by using downTo & step range in for loop...
+    for (a in 20 downTo 0 step 4){
+        print("$a ")
+    }
+    println()
+    for (b in 0 until  21 step 5){
+        print("$b ")
+    }
+    println()
+    //In, kotlin we used concat(join) a char to int then it will increase the char by one or two or even according to our need...
+    for(ch in "efgh"){
+        print(ch + 1) // O/P : fghi
+    }
+    println()
+    for(c in "mnop"){
+        print(c + 3) // O/P : pqrs
+    }
+}
