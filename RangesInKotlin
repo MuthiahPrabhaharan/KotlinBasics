@@ -1,0 +1,116 @@
+//In, kotlin 'in' is a keyword that is used for two types of use cases they are shown below...
+//Use case 1 : The, keyword 'in' can be used to iterate the elements that present inside the for loop...
+//Use case 2 : Like that, 'in' can also be used for check belongings of the elements(values) that present inside the given loop & that is known as 'in-checks'...
+//In, Kotlin we can declare a range for Int,String,Char or our own Objects for everything ranges are much possible & they are optimized perfectly...
+//For example, inside a for loop we give value as 'm' and range is given between a to z then 'in' keyword is used to find out whether the given word 'm' is in the given range of 'a' to 'z' if it's means it will return boolean value as true or false...
+fun main(){
+    println(isLowerCaseLetter('m'))
+    println(isLowerCaseLetter('M'))
+    println(isUpperCaseLetter('s'))
+    println(isUpperCaseLetter('S'))
+    println(isLetter('K'))
+    println(isLetter('k'))
+    println(isAlphaNumeric(17,'A'))
+    //println(isAlphaNumeric('m',16)) error...
+    println(isAlphaNumeric(c='m',i=16)) // No error...
+    println(isAlphaNumeric(360,'D'))
+    println(isAlphaNumeric(c='d',i=144))
+    println(isNotLetter('m'))
+    println(isNotLetter('M'))
+    println(isNotLetter('$'))
+    println(isNotNumber('7'))
+    println(isNotNumber('1'))
+    println(isNotNumber('$'))
+    println()
+    /*
+    identify('7')
+    identify('M')
+    identify('m')
+    identify('#')
+     */
+    println(identify('8'))
+    println(identify('M'))
+    println(identify('p'))
+    println(identify('$'))
+    println()
+    for(c in '0'..'9'){
+        print("$c ")
+    }
+    println()
+    for(c in '0' until '9'){
+        print("$c ")
+    }
+    println()
+    for (i in 0..9){
+        print("$i ")
+    }
+    println()
+    println("mph" in "abd".."rvd") // O/P : True
+    println("Ruby" in setOf("Java","Kotlin","Python")) // O/P : False
+    println("Kotlin" in setOf("Java","Kotlin","Python")) // O/P : True
+    println('M' in 'A'..'N')
+    println('K' in 'A'..'J')
+    println('o' in 'a'..'o')
+    println('z' in 'a' until 'z')
+    println()
+    //We, can also find out (or) check the particular element that present inside list by using 'in' keyword as shown below...
+    //In, kotlin if('n' in list) = if(list.contains('n')) in Java ok...
+    val list = listOf('s','t','r','a','n','g','e')
+    if('n' in list){
+        println("Yes!")
+    }else
+        println("No!")
+    /*
+    else{
+        println("No!")
+    }*/
+}
+//Below, code is used to check character range '..'(including upper bound) by using 'in' keyword in isLowerCaseLetter() function...
+fun isLowerCaseLetter(ch:Char) = ch in 'a'..'z'
+//Below, code is used to check character range '..'(including upper bound) by using 'in' keyword in isUpperCaseLetter() function...
+fun isUpperCaseLetter(ch:Char) = ch in 'A'..'Z'
+//Below, code is used to check character range '..'(including upper bound) by using 'in' keyword in isLetter() function...
+fun isLetter(ch:Char) = ch in 'A'..'Z' || ch in 'a'..'z'
+//Below, code is used to check both int & character range '..'(including upper bound) by using 'in' keyword in isAlphaNumeric() function...
+fun isAlphaNumeric(i:Int,c:Char) = i in 0..9 || c in 'a'..'z'||c in 'A'..'Z'
+//Below, code is used to check character range '..'(including upper bound) by using '!in'(not in) keyword in isNotLetter() function...
+fun isNotLetter(ch:Char) = ch !in 'A'..'Z' && ch !in 'a'..'z'
+//Below, code is used to check character range '..'(including upper bound) by using '!in'(not in) keyword in isNotNumber() function...
+fun isNotNumber(ch:Char) = ch !in '0'..'9'
+//Below, code is used to check character range '..'(including upper bound) by using 'in' keyword in identify() function...
+//Here, we used 'in' keyword inside 'when' condition body by using '..' including upper bound range in that identify() function...
+fun identify(ch:Char) =
+    /*
+    when(ch){
+       in '0'..'9' -> println("It's a Digit!")
+        in 'A'..'Z', in 'a'..'z' -> println("It's a Letter!")
+        else -> println("I can't Identify!")
+    }
+     */
+   when(ch){
+       in '0'..'9' -> "It's a Digit!"
+       in 'A'..'Z',in 'a'..'z' -> "It's a Letter!"
+       else -> "I can't Identify!"
+   }
+/*
+Here, in below code we can also use 'in' keyword & '..' (including upper bound) range inside our Custom type(Class) as shown below...
+Below, we just created a Class named MyDate and that is known as Custom type & we implement Comparable interface for that MyDate Class...
+class MyDate : Comparable<MyDate>
+ */
+/*
+ We, can also check our custom type in this manner by using 'in' & ranges in Kotlin as shown below.But, it's not more 'Kotlinish'...
+   if(myDate >= startDate && myDate <= endDate){
+     println("Yes")
+   }
+   else{
+   println("No")
+ */
+ /*
+ To, be more 'Kotlinish' we can check our custom type in this manner by using 'in' & ranges in Kotlin as shown below...
+ if(myDate in startDate..endDate){
+     println("Yes")
+ }else{
+ println("No")
+ }
+ */
+
