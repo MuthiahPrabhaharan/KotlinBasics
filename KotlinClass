@@ -1,0 +1,44 @@
+//The Class named Abd below in Kotlin...
+//data is a class modifier in Kotlin that will give some inbuilt functions(methods) like hashcode,toString,equals etc...
+data class Abd(
+    val name: String,
+    val age: Int
+)
+/*
+//The same Class named Abd below in Java...
+public class Abd {
+    //Variable (or) Field (or) Properties below...
+    private String name;
+    private int age;
+    //Constructor below...
+    public Abd(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+    //Getters below...
+    public String getName(){
+        return this.name;
+    }
+    public int getAge(){
+        return this.age;
+    }
+    //Creating Object for Abd Class in Java below...
+    Abd ab = new Abd("Abraham Benjamin De Villiers",38)
+    System.out.println(ab.getName());
+    System.out.println(ab.getAge());
+}
+*/
+//We can only call main() function(method) outside the class then only it will run...
+//main() function can't get executed inside a class coz it's a top level function...
+fun main(){
+    //Creating an Object for Abd Class in Kotlin below...
+    val abd = Abd("Abraham Benjamin De Villiers",38)
+    println("Name = "+abd.name+", Age = "+abd.age)
+    //In Kotlin, there is no primitive data(value) type...
+    //Here, everything will be as a reference(object) type...
+    //Here, we can compare two String's content by using both == operator & equals() function...
+    println(abd.name.equals("Mr.360"))
+    println(abd.name == "Superman Of Cricket")
+    println(abd.age.equals(38))
+    println(abd.age == 38)
+}
