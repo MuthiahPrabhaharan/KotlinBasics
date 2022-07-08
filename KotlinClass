@@ -28,6 +28,18 @@ public class Abd {
     System.out.println(ab.getAge());
 }
 */
+/*
+class Eye{
+    val color : String = "Black n White"
+    val size : Int = 5
+    //Here, we can't call main() function(method) explicitly...
+    //So, the main() function can't executed...
+    fun main(){
+        val ey = Eye();
+        println(ey.color)
+    }
+}
+*/
 //We can only call main() function(method) outside the class then only it will run...
 //main() function can't get executed inside a class coz it's a top level function...
 fun main(){
