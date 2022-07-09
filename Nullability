@@ -1,0 +1,113 @@
+//Now, we will going to see about nullability(nullable types) in Kotlin...
+package nl
+fun main() {
+    /*
+    In kotlin,
+       String? = nullable String
+       String = not nullable String
+       Int? = nullable Int
+       Int = not nullable Int
+       So, these nullable types are available for all references type in kotlin like Double,Float,Char etc..,
+       Here, ?. = Safe Access Expression(like if condition in short & smart manner)...
+       Here, ?: = Elvis Operator in Kotlin just like else in if-else conditions...
+       Here, !.. = Not Null Assertion in Kotlin to explicitly(manually) throws an NPE(Null Pointer Exception)...
+     */
+    val s: String = "not null ok!"
+    //val t:String = null => error
+    val t: String? = null // no error...
+    val u: String? = "value is here!"
+    println(s)
+    println(t)
+    println(u)
+    println()
+    if(s != null){
+        println(s.length)
+    }
+    if (t != null){
+        println(t.length)
+    }
+    if(u != null){
+        println(u.length)
+    }
+    println()
+    println(s.length)
+    //println(t.length) // error
+    println(t?.length)
+    //println(u.length) // error
+    println(u?.length)
+    println()
+    val str:String = /*null*/"STR"
+    val sts:String? = "STS"
+    val sta:String? = null
+    println(str?.length)
+    println(sts?.length)
+    println(sta?.length)
+    println()
+    var stk:String? = null /*"not null"*/
+    //Both, codes are doing same operation only but first is complicated...
+    //Safe Access Expression is used in second code ok that's easy...
+    var length = if(stk != null) stk.length else null
+               /* or */
+    var lgth = stk?.length //it is SAE ok...
+    println(length)
+    println(lgth)
+    println()
+    var findLength = if(str != null) str.length else null
+                /* or */
+    var findLengthUsingElvis = str?.length ?: null
+    println(findLength)
+    println(findLengthUsingElvis)
+    println()
+    //Using, Elvis Operator in Kotlin...
+    val a : Int? = null
+    val b : Int? = 1
+    val c : Int = 2
+    val add = (a ?: 0) + c
+    val count = (b ?: 0) + c
+    println("$add$count") // 23
+    println()
+    var abc:String? = "ABCDEF"
+    println(abc!!.length)
+    var xyz:String? = "ZYXWVU"
+    xyz!!
+    println(xyz.length)
+    /*
+    var mno:String? = null
+    mno!!
+    println(mno.length) // It will throws NPE coz of Not Null Assertion(NNA)...
+    */
+    println()
+    val e: Int? = 1
+    val f: Int = 2
+    val sum = e ?: 0 + f
+    println(sum) // 1 coz addition has higher operator precedence than ?: elvis operator ok...
+    //Use, ()parenthesis to avoid operator precedence...
+    println()
+    println(Optional(null))
+}
+//In kotlin, nullable types are implemented under the hood(at bytecode level)by using annotations they are...
+//@Nullable annotation is used under the hood by marking that can be null or not null value...
+//@NotNull annotation is also used under the hood by marking that can be not null value...
+//So, @Nullable and @NotNull these are the annotations that are used under the hood for nullable types in kotlin during compile time...
+//So, there is No Performance Overhead ok...
+//In Kotlin, the nullable types are not equal to Optional(option) type ok...
+//So, Nullable types != Optional (or) Option Types ok...
+class Optional<T>(val value:T){
+    fun isPresent() = value != null
+    fun get() = value ?: throw NoSuchElementException("No values here!")
+}
+//Both, nullable types and optional types both are used to do the same work only...
+//But, both are different by their performances ok...
+//Optional types are always creates one extra object named Wrapper ok...
+//But, nullable types are used to create one n only single object no Wrapper is here ok...
+//If, we are using to store String value in Optional type then Two objects are created one for storing String value another one for storing Nullable String value Ok...
+//But, if we do the same as above using nullable types then Only one object is created for storing both String & nullable String values...
+//Now, we will see difference between Nullable List & List contains nullable elements ok...
+//Nullable List is below...
+fun Num(a:List<Int>?){ //Nullable List
+
+}
+//List contains List Of nullable elements in it...
+fun Nom(b:List<Int?>){ //List Contains Nullable values(Int)
+
+}
