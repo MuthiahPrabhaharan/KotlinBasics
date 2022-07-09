@@ -1,0 +1,66 @@
+package xt
+import best.ab
+import so.mul
+fun main(){
+    val sum = sum(listOf(1,2,3))
+    println("Total = $sum")
+    //By, default extension functions are regular static functions only under the hood(at byte code level) during compilation...
+    //We, can't override any extension functions in kotlin coz they are static by nature...
+    val dog:Dog = Motu()
+    println(dog.color()) // null
+    println("xyz".get(0)) // x
+    println("xyz".get(1)) // y
+    println(A().mul(10,10,10))//For Overload Extension Wins...
+    println(V().ab())//For Override Members Wins...
+    println(A().mul(10,20))
+    println(z().y())
+    println()
+    println(isValidIdentifier("name")) // true
+    println(isValidIdentifier("_age")) // true
+    println(isValidIdentifier("_17"))  // true
+    println(isValidIdentifier(""))     // false
+    println(isValidIdentifier("036"))  // false
+    println(isValidIdentifier("no$"))  // false
+
+}
+//Here, we declare the sum() function as extension to the list of Int elements ok...
+fun sum(list:List<Int>):Int{
+    var num = 0
+    for(i in list){
+         num += i
+    }
+    return num
+}
+//Now, we are going to see about extensions with inheritance in Kotlin...
+open class Dog
+class Motu : Dog()
+fun Dog.color() = "null"
+fun Motu.color() = "Brown"
+//Now, we are going to see extensions vs members...
+//By, default an extension can't hide the members of a class in Kotlin...
+//So, always first priority is given to members then only extension functions...
+fun String.get(i:Int) = '*'//members always wins extensions...
+//But, we can overload a members by using an extension function it's possible...
+class A{
+    fun mul(i:Int,j:Int) : Int {
+        return i * j
+    }
+}
+fun A.mul(x:Int,y:Int,z:Int):Int{
+    return x*y*z//extensions can overload a Class members...
+}
+class V{
+    fun ab() = 0
+}
+fun V.ab() = 1 //extensions can't override(hide) a Class members...
+class z{
+    fun y() = 360
+}
+fun z.y() = 720
+
+fun isValidIdentifier(s:String):Boolean {
+    if(s.isEmpty() || s[0].isDigit() || s.contains('$')){
+        return false
+    }
+    return true
+}
