@@ -1,0 +1,82 @@
+//It is nullability continuation ok...
+package nl
+fun main(args:Array<String>){
+    val s1 = null
+    val s2 = ""
+    val s3 = "   "
+    println(s1.isEmptyOrNull()) // true
+    println(s2.isEmptyOrNull()) // true
+    println(s3.isEmptyOrNull()) // false
+    println()
+    //Now, we will see about the type cast as safe cast in Kotlin...
+    //Casting an expression into a type in a safe manner then it's known as Safe Cast...
+    //The, 'is' in Kotlin is equal to "instanceOf" in Java ok...
+    //So, 'is' = 'instanceOf' in Kotlin...
+    val str = "17"
+    if(str is String){
+        val st = str as String
+        println(st) // 17
+    }
+    /*
+    In, kotlin 'as' equal to type cast it means it will convert only possible values into required type or otherwise throws an Exception ok...
+    as = type cast in Kotlin as shown below...
+    First, if type cast can't convert the value into the given particular type then it will throw Class Cast Exception...
+    if(str is String){
+        val st = str as Int
+        println(st) // ClassCastException...
+    }
+     */
+    //In, kotlin 'as?' equal to safe cast(safe type cast) it means it will convert only possible values into required type or otherwise not throws an Exception it will return null value only...
+    //as? = safe cast in Kotlin as shown below...
+    //Second, if safe cast can't convert the value into the given particular type then it will return only null value that's all...
+    if(str is String){
+        val st = str as? String
+        println(st) // 17
+    }
+    if(str is String){
+        val st = str as? Int
+        println(st) // null
+    }
+    println()
+    val ab = "Abd"
+    if(ab is String){
+        println(ab.toUpperCase()) // ABD
+    }
+    if(ab is String){
+        println(ab.toLowerCase()) // abd
+    }
+    println()
+    val nickName = "SuperMan"
+    println((nickName as String)?.toUpperCase()) // SUPERMAN
+    println((nickName as? String)?.toLowerCase()) // superman
+  //  println((nickName as? String)?.toDouble()) // NFE
+   //  println((nickName as String)?.toInt()) // Exception(NFE)
+    println()
+    val no = 17
+    println((no as? Int).toString()) // 17
+    println((no as Int).toString())  // 17
+    println((no as? String).toString()) // null
+    //println((no as String).toString()) // CCE(Exception)
+    println((no as? String)?.toString()) // null
+//    println((no as String)?.toString()) // CCE
+    //NFE = Number Format Exception...
+    //CCE = Class Cast Exception...
+    println()
+    val st = "Sta"
+    val idfy = if(st is String) st else null
+    println(idfy) // sta
+    val idy : String? = (st as? String)
+    println(idy)  // sta
+    println((st as? String)) // sta
+    val iday = (st as? Int)
+    println(iday) // null
+    //val idey = (st as Int?)
+    //println(idey) // CCE
+    val idgy = (st as? Int?)
+    println(idgy) // null
+    println()
+    val s = "Ktm"
+    println(s as? Int)    // null
+    //println(s as Int?)    // exception(CCE)
+}
+fun String?.isEmptyOrNull() = this == null || this.isEmpty()
