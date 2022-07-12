@@ -1,0 +1,89 @@
+package hr
+import hr.Gender.*;
+import stdext.eq
+
+data class Hero(
+    val name:String,
+    val age:Int,
+    val gender: Gender?
+)
+enum class Gender{ MALE,FEMALE }
+fun main(){
+    val heros = listOf(
+                 Hero("Thor",60,MALE),
+                 Hero("Captain America",42,MALE),
+                 Hero("Vision",9,null),
+                 Hero("Black Widow",29,FEMALE),
+                 Hero("Iron Man",29,MALE),
+                 Hero("Hulk",37,MALE)
+    )
+    println(heros.last().name) // Hulk
+    println(heros.first()?.name) // Thor
+    println(heros.first().age) // 60
+    println(heros.lastOrNull()?.age == 40) // false
+    println(heros.filter { it.age < 30 })
+    println(heros.filter{it.age > 30})
+    println(heros.all { it.age < 50 }) // false
+    println(heros.distinct().size) // 6
+    println(heros.filter { it.gender == null }) // 1
+    println(heros.filter { it.age > 50 }) // 1
+    println(heros.lastOrNull { it.name == "Hulk" }) // Hulk
+    println(heros.lastOrNull { it.age == 40 }) // null
+    println(heros.lastOrNull()?.name == "Hulk") // true
+    println(heros.groupBy { it.age < 30 })
+    println(heros.lastOrNull()?.gender == FEMALE) // false
+  //  println(heros.last { it.age == 30 }.name) //NSE(Exception)
+    println(heros.map { it.age }.distinct().size) // 5
+    println(heros.filter { it.age < 30 }.size) // 3
+    println(heros.filter { it.age > 30 }.size) // 3
+    val(youngest,oldest) = heros.partition { it.age < 30 }
+    println(oldest.size) // 3
+    println(youngest.size) // 3
+    println(heros.maxByOrNull { it.age }?.name) // Thor
+    println(heros.maxByOrNull { it.age < 65 }?.name) // Thor
+    println(heros.all { it.age < 50 }) // false
+    println(heros.any { it.age > 55 }) // true
+    println(heros.any { it.gender == FEMALE }) // true
+    println()
+    val mapByAge:Map<Int,List<Hero>> = heros.groupBy { it.age }
+    val (age,group) = mapByAge.maxByOrNull { (_,group) -> group.size }!!
+    println(age) // 29
+    println()
+    val mpByAge:Map<String,Hero> = heros.associateBy { it.name }
+    println(mpByAge["Hulk"]?.age) // 37
+    println(mpByAge.getValue("Hulk").age) // 37
+    //println(mpByAge.getValue("Unknown").age) // NSE(Exception)
+    println(mpByAge["Stranger"]?.age) // null
+    val mapNamenAge = heros.associate{ it.name to it.age}
+    println(mapNamenAge.getOrElse("Thor") { null }) // 60
+    println(mapNamenAge.getOrElse("Hela") { 0 }) // 0
+    println(mapNamenAge.getOrElse("Loki") { 1 }) // 1
+    println(mapNamenAge.getOrElse("Vision") {2}) // 9
+    //Please, assume that first as Oldest & the second as Youngest in that below val variable type arguments...
+    val (first,second) = heros.flatMap { heros.map { hero -> it to hero  } }
+        .maxByOrNull { it.first.age - it.second.age }!!
+    println(first.name) // Thor
+    println(second.name) // Vision
+    println()
+    val list1 = listOf(1, 2, 3)
+    list1.allNonZero() eq true   // Ok!
+    list1.allNonZero1() eq true   // Ok!
+    list1.allNonZero2() eq true  // Ok!
+    list1.containsZero() eq false // Ok!
+    list1.containsZero1() eq false // Ok!
+    list1.containsZero2() eq false // Ok!
+
+    val list2 = listOf(0, 1, 2)
+    list2.allNonZero() eq false // Ok!
+    list2.allNonZero1() eq false // Ok!
+    list2.allNonZero2() eq false // Ok!
+    list2.containsZero() eq true // Ok!
+    list2.containsZero1() eq true // Ok!
+    list2.containsZero2() eq true // Ok!
+}
+fun List<Int>.allNonZero() =  all { it != 0 }
+fun List<Int>.allNonZero1() =  none { it == 0 }
+fun List<Int>.allNonZero2() = !any { it == 0 }
+fun List<Int>.containsZero() =  any { it == 0 }
+fun List<Int>.containsZero1() = !all { it != 0 }
+fun List<Int>.containsZero2() = !none { it == 0 }
