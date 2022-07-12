@@ -1,0 +1,75 @@
+//Here, we are going to see about function types in Lambda Programming...
+//A Lambda Function without any arguments will always return null or empty lambda function will return only null value ok...
+package func
+fun main(){
+    //Below, we just assign a lambda function to the variables in two different manner...
+    //It's known as function types in lambda coz below the sum() lambda function return was as Integer ok...
+    val sum = {x:Int,y:Int -> x+y}
+    val sub:(Int,Int) -> Int = {i,j -> i-j}
+    val mul = {e:Int,f:Int -> e*f}
+    val div:(Int,Int)->Int = {m,n->m/n}
+    val mod:(Int,Int)->Int = {o,p->o%p}
+    println(sum(23,76))
+    println(sub(100,66))
+    println(mul(100,100))
+    println(div(3456,3))
+    println(mod(564,4))
+    println()
+    //Here, isEven() lambda function return type was Integer & Boolean it means (Int) -> Boolean ok...
+    val isEven:(Int) -> Boolean = {i:Int -> i % 2 == 0}
+    val result = isEven(42)
+    println(result) // true
+    //Here, output variable type is Boolean only coz it will store only true (or) false...
+    //Here, in isEven() function we are storing lambda function ok...
+    //But, in output variable we just stores the result of that lambda function that's all...
+    //Here, we are calling that stored Lambda function named isEven() for that variable named output...
+    //So, it is called a Calling Stored Function ok...
+    val output:Boolean = isEven(27)
+    println(output) // false
+    println()
+    val isOdd = {k:Int -> k % 2 != 0}
+    val list = listOf(1,2,3,4,5)
+    //Here, below we just passed a lambda function named isOdd() for that any & filter list functions as an arguments ok...
+    //So, we can pass a lambda function as an argument for any other function as shown below...
+    println(list.any(isOdd)) // true
+    println(list.filter(isOdd)) // [1, 3, 5]
+    println()
+    //We, can also directly call a Lambda Function in two different manner as shown below...
+    //Type - I to call lambda function directly...
+    println({ println("Hi & Hello!") })
+    //Type - II to call lambda function directly...
+    run{ println("Welcome!") }
+    run { println("Hello Guys!") }
+    println()
+    //In, Java & Kotlin an Interface which only have one abstract(incomplete) function(method) then that is known as a Functional Interface(FI) or Single Abstract Method(SAM) interface ok...
+    //So, SAM interface is also known as FI interface ok...
+    val runnable = Runnable{ println(17) }
+    postponeComputation(1000,runnable)
+    println()
+    //Now, we will see about nullability(nullable types) vs function types ok...
+    //Nullable type(nullability) means that particular function return value can be null ok...
+    //Function type means that whole particular function is null(type) ok...
+    //val f1:() -> Int? = null nullable type(nullability) & error
+    val f2:(() -> Int)? = null // function type & no error
+    val f3:() -> Int? = { null } //nullable type & no error
+    //val f4:(() -> Int)? = { null } // function type & error
+    println(f2)
+    println(f3)
+    println()
+    val f5:(() -> Int)? = null
+    if (f5 != null){
+        println(f5)
+    }
+    if(f5 == null){
+        println(f5)
+    }
+    //Here, invoke() is a default function that is used to call any function type variable or function in Kotlin ok...
+    println( f5?.invoke() ) // null
+}
+fun postponeComputation(i: Int, runnable: Runnable) {
+    println(17)
+}
+//Below, code is called an SAM interface in Kotlin...
+public interface Prime{
+    fun ab(rank:Int)
+}
